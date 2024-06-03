@@ -1,0 +1,22 @@
+/* SuccessPage.css */
+
+.success-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+}
+
+.success-message {
+  font-size: 2em;
+  color: #008000; /* green */
+}
+
+.success-link {
+  margin-top: 20px;
+  font-size: 1.2em;
+  color: #0000ff; /* blue */
+  text-decoration: none;
+}

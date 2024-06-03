@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 function Form() {
   const [suggestions, setSuggestions] = useState({
-    suggestions1: null,
-    suggestions2: null,
-    suggestions3: null,
-    new1: null,
-    new2: null,
-    new3: null,
+    suggestion1: "",
+    suggestion2: "",
+    suggestion3: "",
+    new1: "",
+    new2: "",
+    new3: "",
   });
 
   const navigate = useNavigate();
@@ -17,6 +17,12 @@ function Form() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(`submitting form `);
+
+    // For now, directly navigate to the SuccessPage for testing
+    navigate("/", { state: { itinerary: suggestions } });
+
+    // If you need to actually submit the form to a server, uncomment the following code
+
     try {
       const response = await fetch("/SuccessPage", {
         method: "POST",
@@ -27,7 +33,7 @@ function Form() {
       });
       if (response.ok) {
         console.log("form submitted successfully");
-        navigate("./SuccessPage", { state: { itinerary: suggestions } });
+        navigate("/SuccessPage", { state: { itinerary: suggestions } });
       } else {
         console.error("Form submission failed");
       }
@@ -48,7 +54,8 @@ function Form() {
           1:00 -
           <input
             type="text"
-            value={suggestions.suggestions1}
+            name="suggestion1"
+            value={suggestions.suggestion1}
             onChange={handleInputChange}
           />
         </label>
@@ -56,7 +63,8 @@ function Form() {
           1:30 -
           <input
             type="text"
-            value={suggestions.suggestions2}
+            name="suggestion2"
+            value={suggestions.suggestion2}
             onChange={handleInputChange}
           />
         </label>
@@ -64,30 +72,43 @@ function Form() {
           3:30 -
           <input
             type="text"
-            value={suggestions.suggestions3}
+            name="suggestion3"
+            value={suggestions.suggestion3}
             onChange={handleInputChange}
           />
         </label>
         <div>Add Times and Suggestions</div>
-        <input
-          type="text"
-          placeholder="example: 4:00 - Pet Iroh"
-          value={suggestions.new1}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          placeholder="example: 7:00 - Look into eachother eyes"
-          value={suggestions.new2}
-          onChange={handleInputChange}
-        />
-        <input
-          type="text"
-          placeholder="example: 9:00 - Kith"
-          value={suggestions.new3}
-          onChange={handleInputChange}
-        />
-        <input type="submit" value="Submit" />
+        <label>
+          5:00 -
+          <input
+            type="text"
+            name="new1"
+            placeholder="example: 4:00 - Pet Iroh"
+            value={suggestions.new1}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          7:00 -
+          <input
+            type="text"
+            name="new2"
+            placeholder="example: 7:00 - Look into eachother eyes"
+            value={suggestions.new2}
+            onChange={handleInputChange}
+          />
+        </label>
+        <label>
+          8:00 -
+          <input
+            type="text"
+            name="new3"
+            placeholder="example: 9:00 - Kith"
+            value={suggestions.new3}
+            onChange={handleInputChange}
+          />
+          <input type="submit" value="Submit" />
+        </label>
       </form>
     </div>
   );
