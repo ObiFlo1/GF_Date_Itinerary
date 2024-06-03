@@ -14,16 +14,12 @@ function Body() {
       <ul className="plan">
         {!hasSuggestions ? (
           <>
-            <li className="list-item">10:30 - I pick you up from your house</li>
-            <li className="list-item">
-              11:00 - Shiloh's Baseball game starts{" "}
-            </li>
+            <li className="list-item">10:30 - Flowers</li>
+            <li className="list-item">11:00 -Baseball game starts </li>
             <li className="list-item">
               01:00 - Get some quesadillas w/ guac and sour cream
             </li>
-            <li className="list-item">
-              01:30 - Go to park for picnic, Lancaster City Park
-            </li>
+            <li className="list-item">01:30 - Go to park for picnick</li>
             <li className="list-item">
               3:30 - Go to 'la choacana' to get mango ice cream
             </li>
