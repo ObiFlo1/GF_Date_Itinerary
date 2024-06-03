@@ -83,7 +83,7 @@ function Form() {
           <input
             type="text"
             name="new1"
-            placeholder="example: 4:00 - Pet Iroh"
+            placeholder="example: 4:00 - Pet Dogs"
             value={suggestions.new1}
             onChange={handleInputChange}
           />
@@ -93,7 +93,7 @@ function Form() {
           <input
             type="text"
             name="new2"
-            placeholder="example: 7:00 - Look into eachother eyes"
+            placeholder="example: 7:00 - Go to Zoo"
             value={suggestions.new2}
             onChange={handleInputChange}
           />
@@ -103,7 +103,7 @@ function Form() {
           <input
             type="text"
             name="new3"
-            placeholder="example: 9:00 - Kith"
+            placeholder="example: 9:00 - Bake a cake"
             value={suggestions.new3}
             onChange={handleInputChange}
           />
