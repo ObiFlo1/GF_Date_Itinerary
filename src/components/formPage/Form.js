@@ -3,13 +3,15 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Form() {
-  const [suggestion1, setSuggestion1] = useState(null);
-  const [suggestion2, setSuggestion2] = useState(null);
-  const [suggestion3, setSuggestion3] = useState(null);
-  // If she wants to add goes below
-  const [new1, setNew1] = useState(null);
-  const [new2, setNew2] = useState(null);
-  const [new3, setNew3] = useState(null);
+  const [suggestions, setSuggestions] = useState({
+    suggestions1: null,
+    suggestions2: null,
+    suggestions3: null,
+    new1: null,
+    new2: null,
+    new3: null,
+  });
+
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -21,18 +23,11 @@ function Form() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          suggestion1: suggestion1,
-          suggestion2: suggestion2,
-          suggestion3: suggestion3,
-          new1: new1,
-          new2: new2,
-          new3: new3,
-        }),
+        body: JSON.stringify(suggestions),
       });
       if (response.ok) {
         console.log("form submitted successfully");
-        navigate("./SuccessPage");
+        navigate("./SuccessPage", { state: { itinerary: suggestions } });
       } else {
         console.error("Form submission failed");
       }
@@ -40,6 +35,12 @@ function Form() {
       console.error("Error submitting form:", error);
     }
   };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setSuggestions({ ...suggestions, [name]: value });
+  };
+
   return (
     <div className="form-container">
       <form onSubmit={handleSubmit} className="form-style">
@@ -47,44 +48,44 @@ function Form() {
           1:00 -
           <input
             type="text"
-            value={suggestion1}
-            onChange={(e) => setSuggestion1(e.target.value)}
+            value={suggestions.suggestions1}
+            onChange={handleInputChange}
           />
         </label>
         <label>
           1:30 -
           <input
             type="text"
-            value={suggestion2}
-            onChange={(e) => setSuggestion2(e.target.value)}
+            value={suggestions.suggestions2}
+            onChange={handleInputChange}
           />
         </label>
         <label>
           3:30 -
           <input
             type="text"
-            value={suggestion3}
-            onChange={(e) => setSuggestion3(e.target.value)}
+            value={suggestions.suggestions3}
+            onChange={handleInputChange}
           />
         </label>
         <div>Add Times and Suggestions</div>
         <input
           type="text"
           placeholder="example: 4:00 - Pet Iroh"
-          value={new1}
-          onChange={(e) => setNew1(e.target.value)}
+          value={suggestions.new1}
+          onChange={handleInputChange}
         />
         <input
           type="text"
           placeholder="example: 7:00 - Look into eachother eyes"
-          value={new2}
-          onChange={(e) => setNew2(e.target.value)}
+          value={suggestions.new2}
+          onChange={handleInputChange}
         />
         <input
           type="text"
           placeholder="example: 9:00 - Kith"
-          value={new3}
-          onChange={(e) => setNew3(e.target.value)}
+          value={suggestions.new3}
+          onChange={handleInputChange}
         />
         <input type="submit" value="Submit" />
       </form>

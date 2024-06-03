@@ -1,7 +1,10 @@
 import "./Body.css";
 import Footer from "../footer/Footer";
+import { useLocation } from "react-router-dom";
 
 function Body() {
+  const location = useLocation();
+  const itinerary = location.state?.itinerary || {};
   return (
     <div className="body-container">
       <ul className="plan">
@@ -17,9 +20,27 @@ function Body() {
         </li>
         <li className="list-item">
           {" "}
-          3:30 - Go to 'la choacana' to get mango ice scream
+          3:30 - Go to 'la choacana' to get mango ice scream{" "}
         </li>
         <li className="list-item"> ~ Interlude ~</li>
+        {itinerary.suggestion1 && (
+          <li className="list-item">1:00 - {itinerary.suggestion1}</li>
+        )}
+        {itinerary.suggestion2 && (
+          <li className="list-item">1:00 - {itinerary.suggestion2}</li>
+        )}
+        {itinerary.suggestion3 && (
+          <li className="list-item">1:00 - {itinerary.suggestion3}</li>
+        )}
+        {itinerary.new1 && (
+          <li className="list-item">1:00 - {itinerary.new1}</li>
+        )}
+        {itinerary.new2 && (
+          <li className="list-item">1:00 - {itinerary.new2}</li>
+        )}
+        {itinerary.new3 && (
+          <li className="list-item">1:00 - {itinerary.new3}</li>
+        )}
       </ul>
       <div>
         <p className="click">👇 Click one👇 </p>
